@@ -9,7 +9,7 @@ ClassGuid={990A2BD7-E738-46c7-B26F-1CF8FB9F1391}
 Provider=%BOSA%
 CatalogFile=beidmdrv.cat
 PnpLockdown=1
-DriverVer=12/01/2025,5.1.27.1 ;w.x.y.z
+DriverVer=11/17/2025,5.1.24.2 ;w.x.y.z
 ;MMDDYYYY
 [Manufacturer]
 %BOSA%=Bosa,NTarm64.10.0...16299,NTamd64.10.0...16299,NTx86.10.0...16299
@@ -189,3 +189,5 @@ MediaDescription="Belgium eID Smart Card Minidriver Installation Disk"
 BosaCardDeviceName="Belgium eID Minidriver for Smart Card"
 SmartCardName="SOFTWARE\Microsoft\Cryptography\Calais\SmartCards\Beid"
 SmartCardName_v18="SOFTWARE\Microsoft\Cryptography\Calais\SmartCards\Beid_v18"
+SmartCardName_v18="SOFTWARE\Microsoft\Cryptography\Calais\SmartCards\Beid_v18"
+SmartCardNameWOW64_v18="SOFTWARE\Wow6432Node\Microsoft\Cryptography\Calais\SmartCards\Beid_v18"
