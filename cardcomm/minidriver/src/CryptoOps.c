@@ -560,15 +560,12 @@ DWORD WINAPI   CardSignData
 	LogTrace(LOGTYPE_INFO, WHERE, "BeidMSE [key=0x%.2x, Hashalgo=0x%.2x]", bKeyNr, uiHashAlgo);
 #endif
 
-	if (bKeyNr == BELPIC_KEY_AUTH && pVendorSpec->bBEIDCardType == BEID_RSA_CARD) //only for AUTH key in RSA cards
-	{
-		dwReturn = BeidMSE(pCardData,bKeyNr,bAlgoRef);
-		if ( dwReturn != 0 )
-		{
-			LogTrace(LOGTYPE_ERROR, WHERE, "BeidMSE() returned [0x%X]", dwReturn);
-			CLEANUP(dwReturn);
-		}
-	}
+	//dwReturn = BeidMSE(pCardData,bKeyNr,bAlgoRef);
+	//if ( dwReturn != 0 )
+	//{
+	//	LogTrace(LOGTYPE_ERROR, WHERE, "BeidMSE() returned [0x%X]", dwReturn);
+	//	CLEANUP(dwReturn);
+	//}
 
 #ifdef _DEBUG
 	LogTrace(LOGTYPE_INFO, WHERE, "Data to be Signed...[%d]", cbToSignLocal);
