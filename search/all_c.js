@@ -1,17 +1,18 @@
 var searchData=
 [
-  ['namelabel_187',['NameLabel',['../classe_i_d_viewer_1_1_resources_1_1_identity_tab_string_resources.html#aed16dc99cca860d0bb239ae5f0c97adc',1,'eIDViewer::Resources::IdentityTabStringResources']]],
-  ['nationalitylabel_188',['NationalityLabel',['../classe_i_d_viewer_1_1_resources_1_1_identity_tab_string_resources.html#a36e480354a81a9efb510adc753ae450d',1,'eIDViewer::Resources::IdentityTabStringResources']]],
-  ['nationalnumberconvertor_189',['NationalNumberConvertor',['../class_national_number_convertor.html',1,'']]],
-  ['nationalnumberlabel_190',['NationalNumberLabel',['../classe_i_d_viewer_1_1_resources_1_1_identity_tab_string_resources.html#a26c3c5ed27eb95b1378db5ca1771d4ee',1,'eIDViewer::Resources::IdentityTabStringResources']]],
-  ['newbindata_191',['newbindata',['../structeid__vwr__ui__callbacks.html#af4cb17fd946ddd4e0f28c22288c57dae',1,'eid_vwr_ui_callbacks']]],
-  ['newbindata_3awithlabel_3a_192',['newbindata:withLabel:',['../protocole_i_d_o_s_layer_u_i-p.html#a8f9fb2f5491e559bf9764799e5c201d8',1,'eIDOSLayerUI-p']]],
-  ['newsrc_193',['newsrc',['../structeid__vwr__ui__callbacks.html#af8b15b282224e5183ab65e14883108de',1,'eid_vwr_ui_callbacks']]],
-  ['newsrc_3a_194',['newsrc:',['../protocole_i_d_o_s_layer_u_i-p.html#a4425fccbc2882aa0c0422e6e02a11b4c',1,'eIDOSLayerUI-p']]],
-  ['newstate_195',['newstate',['../structeid__vwr__ui__callbacks.html#a7518d63798ab6c46829ff511adc8aafb',1,'eid_vwr_ui_callbacks']]],
-  ['newstate_3a_196',['newstate:',['../protocole_i_d_o_s_layer_u_i-p.html#a8a775355cc008707a6ed3fe908015e70',1,'eIDOSLayerUI-p']]],
-  ['newstringdata_197',['newstringdata',['../structeid__vwr__ui__callbacks.html#a7c6419d04d288ceab2546881cf95abcf',1,'eid_vwr_ui_callbacks']]],
-  ['newstringdata_3awithlabel_3a_198',['newstringdata:withLabel:',['../protocole_i_d_o_s_layer_u_i-p.html#a6fb84492e4245b5bb2a86fbac0b1c55a',1,'eIDOSLayerUI-p']]],
-  ['newversiondownload_199',['newVersionDownload',['../classe_i_d_viewer_1_1_resources_1_1_application_string_resources.html#a4feb5f6972f5da59613051accaa9ab8b',1,'eIDViewer::Resources::ApplicationStringResources']]],
-  ['newversiondownloadtitle_200',['newVersionDownloadTitle',['../classe_i_d_viewer_1_1_resources_1_1_application_string_resources.html#a66cfea94a488c408e6be14af1a116031',1,'eIDViewer::Resources::ApplicationStringResources']]]
+  ['filemenuaboutitem_0',['fileMenuAboutItem',['../classe_i_d_viewer_1_1_resources_1_1_menu_item_string_resources.html#aa1ca8aafdad94ec91e71adffbd437e32',1,'eIDViewer::Resources::MenuItemStringResources']]],
+  ['filemenucloseitem_1',['fileMenuCloseItem',['../classe_i_d_viewer_1_1_resources_1_1_menu_item_string_resources.html#a75de44bd45e273b23b9d980de0bfa223',1,'eIDViewer::Resources::MenuItemStringResources']]],
+  ['filemenuexportfoto_2',['fileMenuExportFoto',['../classe_i_d_viewer_1_1_resources_1_1_menu_item_string_resources.html#af754658078a0ecdb75cc4b9b79a21f78',1,'eIDViewer::Resources::MenuItemStringResources']]],
+  ['filemenufaqitem_3',['fileMenuFAQItem',['../classe_i_d_viewer_1_1_resources_1_1_menu_item_string_resources.html#a05b4d5ced7bb92149887c123fba34620',1,'eIDViewer::Resources::MenuItemStringResources']]],
+  ['filemenuopenitem_4',['fileMenuOpenItem',['../classe_i_d_viewer_1_1_resources_1_1_menu_item_string_resources.html#a511afa97d9314b8afe0dc397ef604df4',1,'eIDViewer::Resources::MenuItemStringResources']]],
+  ['filemenupreferencesitem_5',['fileMenuPreferencesItem',['../classe_i_d_viewer_1_1_resources_1_1_menu_item_string_resources.html#ae911589f0c642365cdad7a43e2f53945',1,'eIDViewer::Resources::MenuItemStringResources']]],
+  ['filemenuprintitem_6',['fileMenuPrintItem',['../classe_i_d_viewer_1_1_resources_1_1_menu_item_string_resources.html#a29f96f0ccfcb0a145fb5d7edcabed436',1,'eIDViewer::Resources::MenuItemStringResources']]],
+  ['filemenuquititem_7',['filemenuquititem',['../classe_i_d_viewer_1_1_resources_1_1_application_string_resources.html#a2e3c4ddf90e47275d9a1bfb6858ada5a',1,'eIDViewer.Resources.ApplicationStringResources.fileMenuQuitItem'],['../classe_i_d_viewer_1_1_resources_1_1_menu_item_string_resources.html#a2e3c4ddf90e47275d9a1bfb6858ada5a',1,'eIDViewer.Resources.MenuItemStringResources.fileMenuQuitItem']]],
+  ['filemenusaveitem_8',['fileMenuSaveItem',['../classe_i_d_viewer_1_1_resources_1_1_menu_item_string_resources.html#afb5fb3a492a74185f9c57f2ac56d471f',1,'eIDViewer::Resources::MenuItemStringResources']]],
+  ['filemenutestsiteitem_9',['fileMenuTestSiteItem',['../classe_i_d_viewer_1_1_resources_1_1_menu_item_string_resources.html#ad7f27e0fa705b41fb5a1defd984e1239',1,'eIDViewer::Resources::MenuItemStringResources']]],
+  ['filemenutitle_10',['fileMenuTitle',['../classe_i_d_viewer_1_1_resources_1_1_application_string_resources.html#a7444fffb18a56728faaa47100b3cc40e',1,'eIDViewer::Resources::ApplicationStringResources']]],
+  ['filemenuversioncheckitem_11',['fileMenuVersionCheckItem',['../classe_i_d_viewer_1_1_resources_1_1_menu_item_string_resources.html#a0b5783f1d01295113591c276db6bf6eb',1,'eIDViewer::Resources::MenuItemStringResources']]],
+  ['filemenuversionstartupcheckitem_12',['fileMenuVersionStartupCheckItem',['../classe_i_d_viewer_1_1_resources_1_1_menu_item_string_resources.html#a440792b9854ca02acd1f73a27af2d240',1,'eIDViewer::Resources::MenuItemStringResources']]],
+  ['format_13',['Versions of the XSD format',['../md_xml_2versions.html',1,'']]],
+  ['functions_14',['OpenSSL-based helper functions',['../group___c___a_p_i___o_s_s_l.html',1,'']]]
 ];
