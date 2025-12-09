@@ -168,8 +168,8 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 		IfErrors 0 +2
 			Call ErrorHandler_file
 		ClearErrors
-		StrCpy $FileToCopy "$INSTDIR\VSCReader_arm64_prod_0.8.0.msi"
-		File "..\..\..\VirtualSmartcardReader\windows\install\VSCReader_arm64_prod_0.8.0.msi"
+		StrCpy $FileToCopy "$INSTDIR\VSCReader_arm64_prod_0.8.1.msi"
+		File "..\..\..\VirtualSmartcardReader\windows\install\VSCReader_arm64_prod_0.8.1.msi"
 		IfErrors 0 +2
 			Call ErrorHandler_file
 		ClearErrors
@@ -279,7 +279,7 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 
 		StrCpy $LogFile "$INSTDIR\log\install_vscreader_arm64_log.txt"
 		StrCpy $TempFile "$INSTDIR\log\1612_count.txt"
-		ExecWait 'msiexec /qn /norestart /log "$LogFile" /i "$INSTDIR\VSCReader_arm64_prod_0.8.0.msi"' $MsiResponse
+		ExecWait 'msiexec /qn /norestart /log "$LogFile" /i "$INSTDIR\VSCReader_arm64_prod_0.8.1.msi"' $MsiResponse
 		${Switch} $MsiResponse
 			${Case} 1603
 				ExecWait 'cmd.exe /C FIND "1612" "$LogFile" | FIND /C "error code 1612" > "$TempFile"' $retval
@@ -294,7 +294,7 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 				StrCpy $FAQ_url "$(ls_errorinstallmsi_1612_FAQurl)"
 			${Break}
 			${Case} 1622
-				ExecWait 'msiexec /qn /norestart /i "$INSTDIR\VSCReader_arm64_prod_0.8.0.msi"' $MsiResponse
+				ExecWait 'msiexec /qn /norestart /i "$INSTDIR\VSCReader_arm64_prod_0.8.1.msi"' $MsiResponse
 			${Break}
 			${Default}	
 				DetailPrint "MsiResponse = $MsiResponse"
@@ -305,7 +305,7 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 		Delete "$INSTDIR\BeidMW_arm64.msi"
 		Delete "$INSTDIR\BeIDSignApp.msi"
 		Delete "$INSTDIR\BeIDSignPlugin.msi"
-		Delete "$INSTDIR\VSCReader_arm64_prod_0.8.0.msi"
+		Delete "$INSTDIR\VSCReader_arm64_prod_0.8.1.msi"
 	${elseif} ${RunningX64}
 		ClearErrors
 		StrCpy $FileToCopy "$INSTDIR\BeidMW_64.msi"
@@ -323,8 +323,8 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 		IfErrors 0 +2
 			Call ErrorHandler_file
 		ClearErrors
-		StrCpy $FileToCopy "$INSTDIR\VSCReader_x64_0.8.0.msi"
-		File "..\..\..\VirtualSmartcardReader\windows\install\VSCReader_x64_0.8.0.msi"
+		StrCpy $FileToCopy "$INSTDIR\VSCReader_x64_0.8.1.msi"
+		File "..\..\..\VirtualSmartcardReader\windows\install\VSCReader_x64_0.8.1.msi"
 		IfErrors 0 +2
 			Call ErrorHandler_file
 		ClearErrors
@@ -419,7 +419,7 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 
 		StrCpy $LogFile "$INSTDIR\log\install_vscreader_x64_log.txt"
 		StrCpy $TempFile "$INSTDIR\log\1612_count.txt"
-		ExecWait 'msiexec /qn /norestart /log "$LogFile" /i "$INSTDIR\VSCReader_x64_0.8.0.msi"' $MsiResponse
+		ExecWait 'msiexec /qn /norestart /log "$LogFile" /i "$INSTDIR\VSCReader_x64_0.8.1.msi"' $MsiResponse
 		${Switch} $MsiResponse
 			${Case} 1603
 				ExecWait 'cmd.exe /C FIND "1612" "$LogFile" | FIND /C "error code 1612" > "$TempFile"' $retval
@@ -434,7 +434,7 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 				StrCpy $FAQ_url "$(ls_errorinstallmsi_1612_FAQurl)"
 			${Break}
 			${Case} 1622
-				ExecWait 'msiexec /qn /norestart /i "$INSTDIR\VSCReader_x64_0.8.0.msi"' $MsiResponse
+				ExecWait 'msiexec /qn /norestart /i "$INSTDIR\VSCReader_x64_0.8.1.msi"' $MsiResponse
 			${Break}
 			${Default}	
 				DetailPrint "MsiResponse = $MsiResponse"
@@ -445,7 +445,7 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 		Delete "$INSTDIR\BeidMW_64.msi"
 		Delete "$INSTDIR\BeIDSignApp.msi"
 		Delete "$INSTDIR\BeIDSignPlugin.msi"
-		Delete "$INSTDIR\VSCReader_x64_0.8.0.msi"
+		Delete "$INSTDIR\VSCReader_x64_0.8.1.msi"
 	${Else}	
 		ClearErrors
 		StrCpy $FileToCopy "$INSTDIR\BeidMW_32.msi"
@@ -453,8 +453,13 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 		IfErrors 0 +2
 			Call ErrorHandler_file
 		ClearErrors
-		StrCpy $FileToCopy "$INSTDIR\BeIDApp32.msi"
-		File "..\..\..\BeIDSignApp\installer\bin\BeIDApp32.msi"
+		StrCpy $FileToCopy "$INSTDIR\BeIDSignApp32.msi"
+		File "..\..\..\BeIDSignApp\installer\bin\BeIDSignApp32.msi"
+		IfErrors 0 +2
+			Call ErrorHandler_file
+		ClearErrors
+		StrCpy $FileToCopy "$INSTDIR\VSCReader_x86_0.8.1.msi"
+		File "..\..\..\VirtualSmartcardReader\windows\install\VSCReader_x86_0.8.1.msi"
 		IfErrors 0 +2
 			Call ErrorHandler_file
 		ClearErrors
@@ -498,7 +503,7 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 		
 		StrCpy $LogFile "$INSTDIR\log\install_beidsignapp_32_log.txt"
 		StrCpy $TempFile "$INSTDIR\log\1612_count.txt"
-		ExecWait 'msiexec /quiet /norestart /log "$LogFile" /i "$INSTDIR\BeIDApp32.msi"' $MsiResponse
+		ExecWait 'msiexec /quiet /norestart /log "$LogFile" /i "$INSTDIR\BeIDSignApp32.msi"' $MsiResponse
 		${Switch} $MsiResponse
 			${Case} 1603
 				ExecWait 'cmd.exe /C FIND "1612" "$LogFile" | FIND /C "error code 1612" > "$TempFile"' $retval
@@ -513,21 +518,40 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 				StrCpy $FAQ_url "$(ls_errorinstallmsi_1612_FAQurl)"
 			${Break}
 			${Case} 1622
-				ExecWait 'msiexec /quiet /norestart /i "$INSTDIR\BeIDApp32.msi"' $MsiResponse
+				ExecWait 'msiexec /quiet /norestart /i "$INSTDIR\BeIDSignApp32.msi"' $MsiResponse
 			${Break}
 			${Default}	
 				DetailPrint "MsiResponse = $MsiResponse"
 			${Break}				
 		${EndSwitch}
-		!insertmacro TrackInstallStatus
+		
+		StrCpy $LogFile "$INSTDIR\log\install_vscreader_x86_log.txt"
+		StrCpy $TempFile "$INSTDIR\log\1612_count.txt"
+		ExecWait 'msiexec /qn /norestart /log "$LogFile" /i "$INSTDIR\VSCReader_x86_0.8.1.msi"' $MsiResponse
+		${Switch} $MsiResponse
+			${Case} 1603
+				ExecWait 'cmd.exe /C FIND "1612" "$LogFile" | FIND /C "error code 1612" > "$TempFile"' $retval
+				!insertmacro GetFirstLineOfFile $TempFile $firstLine
+				DetailPrint "MSI error 1612, count = $firstLine"
+				StrCmp "$firstLine" "" +2 0	
+				StrCmp "$firstLine" "0" 0 MSI_1612_Error_VSCReader_x86
+			${Break}
+			${Case} 1612
+			MSI_1612_Error_VSCReader_x86:
+				DetailPrint "$(ls_errorinstallmsi_1612) $\r$\n $(ls_error) = $MsiResponse"
+				StrCpy $FAQ_url "$(ls_errorinstallmsi_1612_FAQurl)"
+			${Break}
+			${Case} 1622
+				ExecWait 'msiexec /qn /norestart /i "$INSTDIR\VSCReader_x86_0.8.1.msi"' $MsiResponse
+			${Break}
+			${Default}	
+				DetailPrint "MsiResponse = $MsiResponse"
+			${Break}				
+		${EndSwitch}
 		
 		Delete "$INSTDIR\BeidMW_32.msi"
-		Delete "$INSTDIR\BeIDApp32.msi"
-	${EndIf}
-
-	${If} $InstallStatus != ""
-		StrCpy $MsiResponse $InstallStatus
-		StrCpy $LogFile $InstallStatusLogFile
+		Delete "$INSTDIR\BeIDSignApp32.msi"
+		Delete "$INSTDIR\VSCReader_x86_0.8.1.msi"
 	${EndIf}
 	
 	;check if msi install went ok (initially or after correction)
