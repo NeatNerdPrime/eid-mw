@@ -174,7 +174,7 @@
 
 
 @echo [ERROR] WiX could not be found
-@echo         Please install Wix v5
+@echo         Please install Wix v6.0.2
 @exit /B 1
 
 :found_wix
