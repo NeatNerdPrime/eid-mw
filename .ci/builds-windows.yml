@@ -13,6 +13,8 @@
   allow_failure: true
 
 .build-windows:
+  variables:
+    GIT_DEPTH: 0
   image: $WINDOWS_BUILD_IMAGE
   dependencies: []
   before_script:
