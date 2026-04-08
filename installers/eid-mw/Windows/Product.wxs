@@ -187,7 +187,7 @@
 
       <StandardDirectory Id="SystemFolder">
 <?ifndef env.DONT_MERGE_VCRT?>
-		<Merge Id="VCRT" SourceFile="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Redist\MSVC\v143\MergeModules\Microsoft_VC143_CRT_x86.msm" Language="0" DiskId="1" />
+		<Merge Id="VCRT" SourceFile="$(env.MSM_PATH)\Microsoft_VC143_CRT_x86.msm" Language="0" DiskId="1" />
 <?endif?>
         <Directory Id="BEIDPPDIR" Name="beidpp" />
       </StandardDirectory>

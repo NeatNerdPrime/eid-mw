@@ -22,6 +22,10 @@
 @set SEARCH_NSIS_PATH=C:\Program Files (x86)\NSIS
 @set SEARCH_NSIS_PATH_2=C:\Program Files\NSIS
 
+@set SEARCH_MSM_PATH=C:\Program Files (x86)\Microsoft Visual Studio\2022\Community\VC\Redist\MSVC\v143\MergeModules
+@set SEARCH_MSM_PATH_2=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Redist\MSVC\v143\MergeModules
+@set SEARCH_MSM_PATH_3=C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Redist\MSVC\v143\MergeModules
+
 @set BEID_SEARCH_PATHS_SET=1
 ::end of search paths
 
@@ -232,7 +236,33 @@
 @echo         Please install Visual Studio or WINDDK
 @exit /B 1
 
-:found_signtool
-@echo        Found in "%SEARCH_SIGNTOOL_PATH%"
+@echo [INFO] Check if MSMs are installed
+@set FILE_TO_FIND="Microsoft_VC143_CRT_x86.msm"
+@echo [INFO] Looking for files: %FILE_TO_FIND%
+
+@set MSM_PATH=%SEARCH_MSM_PATH%
+@set FILE_NOT_FOUND=
+@for %%i in (%FILE_TO_FIND%) do @if not exist "%MSM_PATH%\%%~i" set FILE_NOT_FOUND=%%~i
+@if "%FILE_NOT_FOUND%"=="" goto found_msm
+@echo        Not found in "%MSM_PATH%"
+
+@set MSM_PATH=%SEARCH_MSM_PATH_2%
+@set FILE_NOT_FOUND=
+@for %%i in (%FILE_TO_FIND%) do @if not exist "%MSM_PATH%\%%~i" set FILE_NOT_FOUND=%%~i
+@if "%FILE_NOT_FOUND%"=="" goto found_msm
+@echo        Not found in "%MSM_PATH%"
+
+@set MSM_PATH=%SEARCH_MSM_PATH_3%
+@set FILE_NOT_FOUND=
+@for %%i in (%FILE_TO_FIND%) do @if not exist "%MSM_PATH%\%%~i" set FILE_NOT_FOUND=%%~i
+@if "%FILE_NOT_FOUND%"=="" goto found_msm
+@echo        Not found in "%MSM_PATH%"
+
+@echo [ERROR] MSMs could not be found
+@echo         Please install the VCRT merge modules
+@exit /B 1
+
+:found_msm
+@echo        Found in "%SEARCH_MSM_PATH%"
 
 @exit /B 0
