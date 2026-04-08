@@ -14,25 +14,25 @@
 
 @echo [INFO] Making the nl-nl version
 
-wix build -arch x64 -culture nl-nl -d Lang=nl -loc "%~dp0\Strings-nl.wxl" -out bin\nl-nl\BeidViewer64-Basic-nl.msi -pdb bin\x64\nl-nl\BeidViewer64-Basic-nl.wixpdb "%~dp0\Eidviewer64.wxs"
+wix build -arch x64 -culture nl-nl -d Lang=nl -loc "%~dp0\Strings-nl.wxl" -out bin\x64\nl-nl\BeidViewer64-Basic-nl.msi -pdb bin\x64\nl-nl\BeidViewer64-Basic-nl.wixpdb "%~dp0\Eidviewer64.wxs"
 @if NOT "%ERRORLEVEL%" == "0" goto msi_failed
 
 
 @echo [INFO] Making the fr-fr version
 
-wix build -arch x64 -culture fr-fr -d Lang=fr -loc "%~dp0\Strings-fr.wxl" -out bin\fr-fr\BeidViewer64-Basic-fr.msi -pdb bin\x64\fr-fr\BeidViewer64-Basic-fr.wixpdb "%~dp0\Eidviewer64.wxs"
+wix build -arch x64 -culture fr-fr -d Lang=fr -loc "%~dp0\Strings-fr.wxl" -out bin\x64\fr-fr\BeidViewer64-Basic-fr.msi -pdb bin\x64\fr-fr\BeidViewer64-Basic-fr.wixpdb "%~dp0\Eidviewer64.wxs"
 @if NOT "%ERRORLEVEL%" == "0" goto msi_failed
 
 
 @echo [INFO] Making the de-de version
 
-wix build -arch x64 -culture de-de -d Lang=de -loc "%~dp0\Strings-de.wxl" -out bin\de-de\BeidViewer64-Basic-de.msi -pdb bin\x64\de-de\BeidViewer64-Basic-de.wixpdb "%~dp0\Eidviewer64.wxs"
+wix build -arch x64 -culture de-de -d Lang=de -loc "%~dp0\Strings-de.wxl" -out bin\x64\de-de\BeidViewer64-Basic-de.msi -pdb bin\x64\de-de\BeidViewer64-Basic-de.wixpdb "%~dp0\Eidviewer64.wxs"
 @if NOT "%ERRORLEVEL%" == "0" goto msi_failed
 
 
 @echo [INFO] Making the en-us version
 
-wix build -arch x64 -culture en-us -d Lang=en -loc "%~dp0\Strings-en.wxl" -out bin\en-us\BeidViewer64-Basic-en.msi -pdb bin\x64\en-us\BeidViewer64-Basic-en.wixpdb "%~dp0\Eidviewer64.wxs"
+wix build -arch x64 -culture en-us -d Lang=en -loc "%~dp0\Strings-en.wxl" -out bin\x64\en-us\BeidViewer64-Basic-en.msi -pdb bin\x64\en-us\BeidViewer64-Basic-en.wixpdb "%~dp0\Eidviewer64.wxs"
 @if NOT "%ERRORLEVEL%" == "0" goto msi_failed
 
 :: join the language specific msi's together
