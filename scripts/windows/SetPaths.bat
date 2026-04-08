@@ -236,6 +236,9 @@
 @echo         Please install Visual Studio or WINDDK
 @exit /B 1
 
+:found_signtool
+@echo        Found in "%SIGNTOOL_PATH%"
+
 @echo [INFO] Check if MSMs are installed
 @set FILE_TO_FIND="Microsoft_VC143_CRT_x86.msm"
 @echo [INFO] Looking for files: %FILE_TO_FIND%
@@ -263,6 +266,6 @@
 @exit /B 1
 
 :found_msm
-@echo        Found in "%SEARCH_MSM_PATH%"
+@echo        Found in "%MSM_PATH%"
 
 @exit /B 0
