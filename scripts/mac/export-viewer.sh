@@ -5,7 +5,7 @@ set -e
 pushd $(dirname $0)
 
 source set_eidmw_version.sh
-source set_eidmw_username.sh
+#source set_eidmw_username.sh
 
 EIDVIEWER_DMG="eID Viewer-$REL_VERSION.dmg"
 EIDVIEWER_BACKUP_DMG="eID Viewer-$REL_VERSION-backup.dmg"
@@ -28,6 +28,7 @@ popd
 
 echo "********** archive and export (in post-archive script) eID Viewer **********"
 xcodebuild -project "beidmw.xcodeproj" -scheme "eID Viewer" -configuration Release clean archive
+
 popd
 
 
@@ -50,10 +51,10 @@ codesign --timestamp --force -o runtime --sign "Developer ID Application" -v "$E
 
 
 echo "********** notarize the eIDViewer installer **********"
-/usr/bin/xcrun altool --notarize-app --primary-bundle-id "be.eid.ViewerInstaller.dmg" --username "$AC_USERNAME" --password "@keychain:altool" --file "$EIDVIEWER_DMG"
+/usr/bin/xcrun notarytool submit --wait --keychain-profile "notarytool" "$EIDVIEWER_DMG"
 
 echo "********** check notarization history **********"
-xcrun altool --notarization-history 0 -u "$AC_USERNAME" -p "@keychain:altool"
+xcrun notarytool history -p "notarytool"
 
 #create a backup copy, in case the stapling goes wrong
 cp -R "$EIDVIEWER_DMG"  "$EIDVIEWER_BACKUP_DMG"
@@ -68,10 +69,10 @@ echo "********** staple the notarization ticket to the DMG **********"
 
 
 echo "**** Use the below command to get notarised package identifiers ****"
-echo "xcrun altool --notarization-history 0 -u $AC_USERNAME -p @keychain:altool"
+echo "xcrun notarytool history -p \"notarytool\""
 
 echo "**** Then use that [identifier] to get the log url: ****"
-echo "xcrun altool --notarization-info [identifier] -u $AC_USERNAME -p @keychain:altool"
+echo "xcrun notarytool log -p \"notarytool\" [identifier]"
 
 echo "**** If the log is ok, but stapling failed due to record not found, retry stapling: ****"
 echo "/usr/bin/xcrun stapler staple -v $EIDVIEWER_DMG"

@@ -2,7 +2,7 @@
 
 set -e
 
-EIDMW_BUILD_CONFIG=Export
+EIDMW_BUILD_CONFIG=Release
 
 # Go to the mac installers directory
 cd $(dirname $0)/../../installers/eid-mw/mac

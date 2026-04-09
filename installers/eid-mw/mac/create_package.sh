@@ -19,7 +19,7 @@ source "$(pwd)/../../../scripts/mac/set_eidmw_version.sh"
 
 
 
-if [ "$EIDMW_BUILD_CONFIG" = "Export" ]
+if [ "$EIDMW_BUILD_CONFIG" = "Release" ]
 then
 	#when creating the installers packages that will be released to the public (export config),
 	#we need to run tools that require a mac dev account and PW
@@ -29,13 +29,13 @@ then
 	#get the notarizer's account name
 	#create the bash file set_eidmw_username.sh to define:
 	#AC_USERNAME="dev.account@firm.be" 
-	source "$(pwd)/../../../scripts/mac/set_eidmw_username.sh"
+	#source "$(pwd)/../../../scripts/mac/set_eidmw_username.sh"
 	#release dir, where all the beidbuild files to be released will be placed
 	RELEASE_DIR="$(pwd)/exports/export_eidmw"
 	#release dir, where all the BEIDToken files to be released will be placed
 	RELEASE_BEIDTOKEN_DIR="$(pwd)/exports/export_BEIDToken"
 	#BEIDToken.app path, where this script will find the exported BEIDToken.app
-	BEIDTOKEN_PATH="$(pwd)/../../../export/BEIDToken.app"
+	BEIDTOKEN_PATH="$(pwd)/../../../cardcomm/ctkToken/build/Release/BEIDToken.app"
 else
 	#release dir, where all the beidbuild files to be released will be placed
 	RELEASE_DIR="$(pwd)/release"
@@ -127,10 +127,10 @@ Mkdir -p "$MOZ_STORAGE_MANIFEST_DIR"
 #copy all files that should be part of the installer:
 #in case of an export, also sign the pkcs11 library
 #the other binaries should already been signed when archiving in xcode
-if [ "$EIDMW_BUILD_CONFIG" = "Export" ]
+if [ "$EIDMW_BUILD_CONFIG" = "Release" ]
 then
-	codesign --timestamp --force -o runtime --sign "Developer ID Application" -v ../../../release/libbeidpkcs11.$REL_VERSION.dylib
-	cp ../../../release/libbeidpkcs11.$REL_VERSION.dylib "$PKCS11_INST_DIR"
+	codesign --timestamp --force -o runtime --sign "Developer ID Application" -v ../../../Release/libbeidpkcs11.$REL_VERSION.dylib
+	cp ../../../Release/libbeidpkcs11.$REL_VERSION.dylib "$PKCS11_INST_DIR"
 else
 	cp $PKCS11_DYLIB_PATH "$PKCS11_INST_DIR"
 fi
@@ -234,7 +234,7 @@ echo "********** building packages **********"
 #build the packages in the RELEASE_DIR
 pushd $RELEASE_DIR
 
-if [ "$EIDMW_BUILD_CONFIG" = "Export" ]
+if [ "$EIDMW_BUILD_CONFIG" = "Release" ]
 then
   EIDMW_CODESIGN_IDENTITY_APP="${EIDMW_CODESIGN_IDENTITY_APP:-Developer ID Application}"
   EIDMW_CODESIGN_IDENTITY_INST="${EIDMW_CODESIGN_IDENTITY_INST:-Developer ID Installer}"
@@ -264,6 +264,7 @@ then
 
   echo "********** notarize the quick installer **********"
   /usr/bin/xcrun notarytool submit --wait --keychain-profile "notarytool" "$DMG_NAME"
+
 
   #create a backup copy, in case the stapling goes wrong
   cp -R "$DMG_NAME"  "$DMG_BACKUP_NAME"
@@ -306,7 +307,7 @@ else
     codesign --timestamp --force -o runtime --sign "$EIDMW_CODESIGN_IDENTITY_APP" -v $PKG_NAME
   fi
 
-  echo "********** creating the installer dmg package with Mac Developer **********"
+  echo "********** creating the installer dmg package with Developer ID Application **********"
   hdiutil create -fs "HFS+" -format UDBZ -srcfolder $PKG_NAME -volname "${VOL_NAME}" $DMG_NAME
   if [ $EIDMW_SIGN_BUILD -eq 1 ];then
     echo "********** signing $PKG_NAME with $EIDMW_CODESIGN_IDENTITY_APP **********"
