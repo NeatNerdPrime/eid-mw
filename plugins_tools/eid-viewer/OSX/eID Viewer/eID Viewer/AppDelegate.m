@@ -370,7 +370,9 @@
 		    self, @"member_of_family",
 		    self, @"basic_key_hash",
 		    self, @"basic_key_verify:valid",
-            self, @"carddata_appl_version",
+                    self, @"carddata_appl_version",
+                    self, @"certvalfromval:past",
+                    self, @"certvaltilval:future",
 		    nil];
 	_viewdict = [[NSMutableDictionary alloc] init];
 	[_CertificatesView setDataSource:_certstore];
@@ -497,8 +499,8 @@
 		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
 			[self.memberOfFamilyState setState:NSOnState];
 		}];
-    }
-    else if([label isEqualToString:@"basic_key_hash"]) {
+        }
+        else if([label isEqualToString:@"basic_key_hash"]) {
 		[self setHex:data forLabel:label withUi:ui];
 		[self setHasBasicKey:YES];
 	}
@@ -531,9 +533,9 @@
 				struct labelnames* toggles = get_foreigner_labels();
 				int i;
 				for(i=0; i<toggles->len; i++) {
-                    if(strcmp(toggles->label[i], "cardEU_start_date") == 0) {
-                        continue;
-                    }
+                                        if(strcmp(toggles->label[i], "cardEU_start_date") == 0) {
+                                                continue;
+                                        }
 					NSView *v = (NSView*)[self searchObjectById:[NSString stringWithUTF8String:toggles->label[i]] ofClass:[NSView class] forUpdate:NO];
 					[v setHidden:!new_foreigner];
 					v = (NSView*)[self searchObjectById:[NSString stringWithFormat:@"title_%s",toggles->label[i]] ofClass:[NSView class] forUpdate:NO];
@@ -549,28 +551,40 @@
 				[self.IdentityTab layoutSubtreeIfNeeded];
 			}];
 		}
-        if((b0 == '3' && b1 == '1') || (b0 == '6' && b1 == '1')) {
-            [self show_card_eu_start_date:TRUE];
+                if((b0 == '3' && b1 == '1') || (b0 == '6' && b1 == '1')) {
+                        [self show_card_eu_start_date:TRUE];
+                }
+                if((b0 == '3' && b1 == '2') || (b0 == '6' && b1 == '2')) {
+                        [self show_card_eu_start_date:FALSE];
+                }
         }
-        if((b0 == '3' && b1 == '2') || (b0 == '6' && b1 == '2')) {
-            [self show_card_eu_start_date:FALSE];
+        else if([label isEqualToString:@"carddata_appl_version"]) {
+                char vers;
+                [data getBytes:&vers length:1];
+                switch(vers) {
+                        case 0x17:
+                                [self newstringdata:@"v1.7" withLabel:label];
+                                break;
+                        case 0x18:
+                                [self newstringdata:@"v1.8" withLabel:label];
+                                break;
+                        default:
+                                [self newstringdata:@"?" withLabel:label];
+                                break;
+                }
         }
-	}
-    else if([label isEqualToString:@"carddata_appl_version"]) {
-        char vers;
-        [data getBytes:&vers length:1];
-        switch(vers) {
-            case 0x17:
-                [self newstringdata:@"v1.7" withLabel:label];
-                break;
-            case 0x18:
-                [self newstringdata:@"v1.8" withLabel:label];
-                break;
-            default:
-                [self newstringdata:@"?" withLabel:label];
-                break;
+        else if([label isEqualToString:@"certvaltilval:future"]) {
+                NSTextField *tf = (NSTextField*)[self searchObjectById:@"certvaltilval" ofClass:[NSTextField class] forUpdate:YES];
+                BOOL *b = (BOOL*)data.bytes;
+                NSColor *c = *b == YES ? [NSColor labelColor] : [NSColor redColor];
+                [tf setTextColor:c];
         }
-    }
+        else if([label isEqualToString:@"certvalfromval:past"]) {
+                NSTextField *tf = (NSTextField*)[self searchObjectById:@"certvalfromval" ofClass:[NSTextField class] forUpdate:YES];
+                BOOL *b = (BOOL*)data.bytes;
+                NSColor *c = *b == YES ? [NSColor labelColor] : [NSColor redColor];
+                [tf setTextColor:c];
+        }
 }
 -(void)changeLogLevel:(NSPopUpButton *)logLevel {
 	[[NSUserDefaults standardUserDefaults] setInteger:[logLevel indexOfSelectedItem] forKey:@"log_level"];

@@ -62,7 +62,14 @@
 	BIO_read(bio, buf, (int)size);
 	buf[size]='\0';
 	arr[CERT_COL_VALIDTO] = [NSString stringWithCString:buf encoding:NSUTF8StringEncoding];
-	free(buf);
+        free(buf);
+
+        BOOL *dateStatus = malloc(sizeof(BOOL));
+        *dateStatus = (X509_cmp_current_time(X509_get_notAfter(cert)) > 0) ? YES : NO;
+        arr[CERT_COL_VALIDTO_FUTURE] = [NSData dataWithBytesNoCopy:(void*)dateStatus length:sizeof(BOOL) freeWhenDone:YES];
+        dateStatus = malloc(sizeof(BOOL));
+        *dateStatus = (X509_cmp_current_time(X509_get_notBefore(cert)) < 0) ? YES : NO;
+        arr[CERT_COL_VALIDFROM_PAST] = [NSData dataWithBytesNoCopy:(void*)dateStatus length:sizeof(BOOL) freeWhenDone:YES];
 
 	arr[CERT_COL_DESC] = [NSString stringWithCString:eid_vwr_detail_cert(label.UTF8String, cert) encoding:NSUTF8StringEncoding];
 	arr[CERT_COL_USE] = [NSString stringWithCString:eid_vwr_get_use_flags(label.UTF8String, cert) encoding:NSUTF8StringEncoding];
@@ -184,6 +191,8 @@
 	[_ui newstringdata:[arr objectAtIndex:CERT_COL_VALIDTO] withLabel:@"certvaltilval"];
 	[_ui newstringdata:[arr objectAtIndex:CERT_COL_USE] withLabel:@"certuseval"];
 	[_ui newbindata:[arr objectAtIndex:CERT_COL_IMAGE] withLabel:@"certimage"];
+        [_ui newbindata:[arr objectAtIndex:CERT_COL_VALIDFROM_PAST] withLabel:@"certvalfromval:past"];
+        [_ui newbindata:[arr objectAtIndex:CERT_COL_VALIDTO_FUTURE] withLabel:@"certvaltilval:future"];
 	NSString *trust;
 	eIDResult res = arr == nil ? eIDResultUnknown : [[arr objectAtIndex:CERT_COL_VALIDITY] integerValue];
 	switch(res) {
