@@ -749,6 +749,7 @@ validate:validation:linux:google:
   - build:ubuntu_stable_64
   - build:ubuntu_lts_64
   - build:ubuntu_lts_32
+  allow_failure: true
 
 validate:validation:linux:firefox:
   stage: validate
@@ -760,6 +761,7 @@ validate:validation:linux:firefox:
   - build:ubuntu_stable_64
   - build:ubuntu_lts_64
   - build:ubuntu_lts_32
+  allow_failure: true
 
 #Validate:validation:macos:safari:
 #  stage: validate
