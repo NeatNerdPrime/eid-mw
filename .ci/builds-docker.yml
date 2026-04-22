@@ -7,7 +7,6 @@
   - name: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/docker:28-dind
     alias: docker
   variables:
-    IMAGE_TAG: $CI_REGISTRY_IMAGE/$IMAGE_NAME:$CI_COMMIT_REF_SLUG-$ARCH_TAG
     DOCKER_HOST: tcp://docker:2376
     DOCKER_TLS_VERIFY: 1
     DOCKER_TLS_CERTDIR: /certs
@@ -38,8 +37,21 @@
   after_script:
   - docker logout $CI_REGISTRY
 
-.docker-base-arm:
+.docker-base-ma:
   extends: .docker-base
+  variables:
+    IMAGE_TAG: $CI_REGISTRY_IMAGE/$IMAGE_NAME:$CI_COMMIT_REF_SLUG$ARCH_TAG
+
+.docker-base-nm:
+  extends: .docker-base
+  variables:
+    IMAGE_TAG: $CI_REGISTRY_IMAGE/$IMAGE_NAME:$CI_COMMIT_REF_SLUG
+  tags:
+    - dind
+    - x86
+
+.docker-base-arm:
+  extends: .docker-base-ma
   variables:
     ARCH_TAG: arm
   tags:
@@ -47,9 +59,25 @@
   - $ARCH_TAG
 
 .docker-base-x86:
-  extends: .docker-base
+  extends: .docker-base-ma
   variables: 
     ARCH_TAG: x86
   tags:
   - dind
   - $ARCH_TAG
+
+.docker-base-manifest:
+  extends: .docker-base-nm
+  variables: 
+    ARCH_TAG: ""
+  tags:
+  - dind
+  - x86
+  script:
+    - apk add curl jq
+    - docker rmi $IMAGE_TAG || true
+    - 'docker manifest create $IMAGE_TAG $CI_REGISTRY_IMAGE/$IMAGE_NAME:${CI_COMMIT_REF_SLUG}x86 $CI_REGISTRY_IMAGE/$IMAGE_NAME:${CI_COMMIT_REF_SLUG}arm'
+    - 'docker manifest push $IMAGE_TAG'
+    - 'REPOID=$(curl -k -s --header "PRIVATE-TOKEN: $CI_JOB_TOKEN" --url "$CI_API_V4_URL/projects/$CI_PROJECT_ID/registry/repositories"|jq -r ".[]|[.name, .id]|@tsv"|while read name id; do if [ $name == $IMAGE_NAME ]; then echo $id; fi; done)'
+    - 'curl -k -s -X DELETE --header "PRIVATE-TOKEN: $CI_JOB_TOKEN" --url "$CI_API_V4_URL/projects/$CI_PROJECT_ID/registry/repositories/$REPOID/tags/${CI_COMMIT_REF_SLUG}x86"'
+    - 'curl -k -s -X DELETE --header "PRIVATE-TOKEN: $CI_JOB_TOKEN" --url "$CI_API_V4_URL/projects/$CI_PROJECT_ID/registry/repositories/$REPOID/tags/${CI_COMMIT_REF_SLUG}arm"'

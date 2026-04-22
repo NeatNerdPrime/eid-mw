@@ -45,6 +45,19 @@ suse-build-x86:
     - .ci/builds-docker.yml
     - .ci/build-configs.yml
 
+suse-build-manifest:
+  extends: .docker-base-manifest
+  variables:
+    IMAGE_NAME: suse-build
+  only:
+    changes:
+      - .ci/dockerfiles/suse-build/**/*
+      - .ci/builds-docker.yml
+      - .ci/build-configs.yml
+  needs:
+    - job: suse-build-arm
+    - job: suse-build-x86
+
 fed-build-arm:
   extends: .docker-base-arm
   variables:
@@ -65,8 +78,21 @@ fed-build-x86:
     - .ci/builds-docker.yml
     - .ci/build-configs.yml
 
-deb-build-x86:
-  extends: .docker-base-x86
+fed-build-manifest:
+  extends: .docker-base-manifest
+  variables:
+    IMAGE_NAME: fed-build
+  only:
+    changes:
+      - .ci/dockerfiles/fed-build/**/*
+      - .ci/builds-docker.yml
+      - .ci/build-configs.yml
+  needs:
+    - job: fed-build-arm
+    - job: fed-build-x86
+
+deb-build:
+  extends: .docker-base-nm
   variables:
    IMAGE_NAME: deb-build
   only:
@@ -75,8 +101,8 @@ deb-build-x86:
     - .ci/builds-docker.yml
     - .ci/build-configs.yml
 
-deb-repro-x86:
-  extends: .docker-base-x86
+deb-repro:
+  extends: .docker-base-nm
   variables:
    IMAGE_NAME: deb-repro
   only:
@@ -85,8 +111,8 @@ deb-repro-x86:
     - .ci/builds-docker.yml
     - .ci/build-configs.yml
 
-deb-scan-build-x86:
-  extends: .docker-base-x86
+deb-scan-build:
+  extends: .docker-base-nm
   variables:
    IMAGE_NAME: deb-scan-build
   only:
@@ -115,8 +141,21 @@ deb-sbuild-x86:
     - .ci/builds-docker.yml
     - .ci/build-configs.yml
 
-gtk4-build-x86:
-  extends: .docker-base-x86
+deb-sbuild-manifest:
+  extends: .docker-base-manifest
+  variables:
+    IMAGE_NAME: deb-sbuild
+  only:
+    changes:
+      - .ci/dockerfiles/deb-sbuild/**/*
+      - .ci/builds-docker.yml
+      - .ci/build-configs.yml
+  needs:
+    - job: deb-sbuild-arm
+    - job: deb-sbuild-x86
+
+gtk4-build:
+  extends: .docker-base-nm
   variables:
    IMAGE_NAME: gtk4-build
   only:
@@ -126,8 +165,8 @@ gtk4-build-x86:
     - .ci/build-configs.yml
   allow_failure: true
 
-deb-testing-x86:
-  extends: .docker-base-x86
+deb-testing:
+  extends: .docker-base-nm
   variables:
    IMAGE_NAME: deb-testing
   only:
