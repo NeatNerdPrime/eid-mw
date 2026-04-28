@@ -23,9 +23,11 @@
 #include "cardfactory.h"
 #include "thread.h"
 #include "common/log.h"
+#include "common/util.h"
 #include "card.h"
 
 #include <string>
+#include <algorithm>
 
 
 namespace eIDMW
@@ -40,6 +42,15 @@ namespace eIDMW
 		CCard *poCard = NULL;
 		long lErrCode = EIDMW_ERR_CHECK;	// should never be returned
 		const char *strReader = NULL;
+
+		// Skip virtual Windows Hello for Business readers to avoid hammering
+		std::string readerLower = csReader;
+		std::transform(readerLower.begin(), readerLower.end(), readerLower.begin(), ::tolower);
+		if (readerLower.find("windows hello for business") != std::string::npos)
+		{
+			MWLOG(LEV_INFO, MOD_CAL, L"    Skipping virtual reader %ls", utilStringWiden(csReader).c_str());
+			return poCard;
+		}
 
 		if (poPCSC->m_ulConnectionDelay != 0)
 		{
@@ -65,7 +76,7 @@ namespace eIDMW
 			if (e.GetError() != (long)EIDMW_ERR_CANT_CONNECT && e.GetError() != (long)EIDMW_ERR_CARD_COMM)
 			{
 				throw;
-			}				
+			}
 			lErrCode = e.GetError();
 			hCard = 0;
 		}
@@ -98,6 +109,7 @@ namespace eIDMW
 				throw CMWEXCEPTION(lErrCode);
 			}
 		}
+
 done:
 		return poCard;
 	}
