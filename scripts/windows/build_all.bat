@@ -44,10 +44,10 @@ setlocal disabledelayedexpansion
 @if "%ERRORLEVEL%" == "1" goto msbuild_failed
 @"%BEID_DIR_MSBUILD%\MSBuild.exe" /m  /target:build /property:Configuration=Release /Property:Platform=x86 "%~dp0..\..\plugins_tools\eid-viewer\Windows\VS_2022\eIDViewer.sln"
 @if "%ERRORLEVEL%" == "1" goto msbuild_failed
-@"%BEID_DIR_MSBUILD%\MSBuild.exe" /m  /target:clean /property:Configuration=Release /Property:Platform=x64 "%~dp0..\..\plugins_tools\eid-viewer\Windows\VS_2022\eIDViewer.sln"
-@if "%ERRORLEVEL%" == "1" goto msbuild_failed
-@"%BEID_DIR_MSBUILD%\MSBuild.exe" /m  /target:build /property:Configuration=Release /Property:Platform=x64 "%~dp0..\..\plugins_tools\eid-viewer\Windows\VS_2022\eIDViewer.sln"
-@if "%ERRORLEVEL%" == "1" goto msbuild_failed
+::@"%BEID_DIR_MSBUILD%\MSBuild.exe" /m  /target:clean /property:Configuration=Release /Property:Platform=x64 "%~dp0..\..\plugins_tools\eid-viewer\Windows\VS_2022\eIDViewer.sln"
+::@if "%ERRORLEVEL%" == "1" goto msbuild_failed
+::@"%BEID_DIR_MSBUILD%\MSBuild.exe" /m  /target:build /property:Configuration=Release /Property:Platform=x64 "%~dp0..\..\plugins_tools\eid-viewer\Windows\VS_2022\eIDViewer.sln"
+::@if "%ERRORLEVEL%" == "1" goto msbuild_failed
 
 
 :: create the CertClean tool
@@ -145,13 +145,13 @@ copy "%~dp0..\..\installers\eid-mw\Windows\bin\BeidMW_arm64.msi" "%~dp0"
 @echo [INFO] copy 32 bit msi installer
 copy "%~dp0..\..\installers\eid-viewer\Windows\bin\BeidViewer.msi" "%~dp0"
 
-@call "%~dp0..\..\installers\eid-viewer\Windows\build_msi_eidviewer64.cmd"
-@if %ERRORLEVEL%==1 goto end_resetpath_with_error
-@echo [INFO] sign 64 bit msi installer
-"%SIGNTOOL_PATH%\signtool" sign /fd SHA256 /a /n "ZetesTestCert" /v "%~dp0..\..\installers\eid-viewer\Windows\bin\x64\BeidViewer64.msi"
-@if %ERRORLEVEL%==1 goto signtool_failed
-@echo [INFO] copy 64 bit msi installer
-copy "%~dp0..\..\installers\eid-viewer\Windows\bin\x64\BeidViewer64.msi" "%~dp0"
+::@call "%~dp0..\..\installers\eid-viewer\Windows\build_msi_eidviewer64.cmd"
+::@if %ERRORLEVEL%==1 goto end_resetpath_with_error
+::@echo [INFO] sign 64 bit msi installer
+::"%SIGNTOOL_PATH%\signtool" sign /fd SHA256 /a /n "ZetesTestCert" /v "%~dp0..\..\installers\eid-viewer\Windows\bin\x64\BeidViewer64.msi"
+::@if %ERRORLEVEL%==1 goto signtool_failed
+::@echo [INFO] copy 64 bit msi installer
+::copy "%~dp0..\..\installers\eid-viewer\Windows\bin\x64\BeidViewer64.msi" "%~dp0"
 
 @cd "%OUR_CURRENT_PATH%"
 

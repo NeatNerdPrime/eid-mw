@@ -5,7 +5,7 @@ call "%~dp0.\SetPaths.bat"
 
 :: get eidmw version
 :: =================
-call "%~dp0.\set_eidmw_version.cmd"
+call "%~dp0.\create_eidmw_version_files.cmd"
 
 
 :: sign the minidriver 
