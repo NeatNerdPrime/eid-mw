@@ -19,19 +19,21 @@ DriverVer=11/20/2025,5.1.24.3 ;w.x.y.z
 %BosaCardDeviceName%=Bosa64_100_Install,SCFILTER\CID_a503010101ad1310
 %BosaCardDeviceName%=Bosa64_100_Install,SCFILTER\CID_a503010101ad1311
 %BosaCardDeviceName%=Bosa64_100_Install,SCFILTER\CID_80318065b085040120120fff829000
+%BosaCardDeviceName%=Bosa64_100_Install,SCFILTER\CID_80318065b085040120120fff829001
 
 ;Windows 10 version 1709 and beyond - x86
 [Bosa.NTx86.10.0...16299]
 %BosaCardDeviceName%=Bosa32_100_Install,SCFILTER\CID_a503010101ad1310
 %BosaCardDeviceName%=Bosa32_100_Install,SCFILTER\CID_a503010101ad1311
 %BosaCardDeviceName%=Bosa32_100_Install,SCFILTER\CID_80318065b085040120120fff829000
+%BosaCardDeviceName%=Bosa32_100_Install,SCFILTER\CID_80318065b085040120120fff829001
 
 ;Windows 10 version 1709 and beyond - arm64
 [Bosa.NTarm64.10.0...16299]
 %BosaCardDeviceName%=BosaArm64_100_Install,SCFILTER\CID_a503010101ad1310
 %BosaCardDeviceName%=BosaArm64_100_Install,SCFILTER\CID_a503010101ad1311
 %BosaCardDeviceName%=BosaArm64_100_Install,SCFILTER\CID_80318065b085040120120fff829000
-
+%BosaCardDeviceName%=BosaArm64_100_Install,SCFILTER\CID_80318065b085040120120fff829001
 
 
 [SourceDisksFiles]
