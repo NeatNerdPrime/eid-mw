@@ -29,10 +29,10 @@
 #define MINIMUM_VERSION_SUPPORTED      CARD_DATA_VERSION_SIX
 #define CURRENT_VERSION_SUPPORTED      CARD_DATA_VERSION_SIX
 
-#define SUPPORTED_CARDS                4
+#define SUPPORTED_CARDS                5
 
 /* Supported ATRs by the Mini Driver */
-CARD_ATR    CardAtr[] = 
+CARD_ATR    CardAtr[SUPPORTED_CARDS] =
             { 
                {{0x3B,0x98,0x13,0x40,0x0A,0xA5,0x03,0x01,0x01,0x01,0xAD,0x13,0x11}, 13, BEID_RSA_CARD},
                {{0x3B,0x98,0x94,0x40,0x0A,0xA5,0x03,0x01,0x01,0x01,0xAD,0x13,0x10}, 13, BEID_RSA_CARD},
