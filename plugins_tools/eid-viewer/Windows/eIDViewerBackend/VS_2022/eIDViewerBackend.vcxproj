@@ -118,6 +118,7 @@ copy $(OutDir)$(TargetName)$(TargetExt) ..\..\eIDViewer\bin\Debug\</Command>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>..\..\..\..\..\doc\sdk\include\rsaref220;..\..\..\;..\..\..\..\..\tests\unit;..\..\..\..\util;..\..\..\include</AdditionalIncludeDirectories>
       <CompileAs>Default</CompileAs>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
