@@ -16,10 +16,10 @@ http://nsis.sourceforge.net/Download
 
 4) Wix Toolset
 For the creation of the MSI installers
-dotnet tool install --global wix --version 5.0.2
-move to C:\Users\<YOU>\.dotnet\tools\.store\wix\5.0.2\wix\5.0.2\tools\net6.0\any
-install UI toolset: wix extension add WixToolset.UI.wixext/5.0.2
-install Util toolset: wix extension add WixToolset.Util.wixext/5.0.2
+dotnet tool install --global wix --version 6.0.2
+move to C:\Users\<YOU>\.dotnet\tools\.store\wix\6.0.2\wix\6.0.2\tools\net6.0\any
+install UI toolset: wix extension add WixToolset.UI.wixext/6.0.2
+install Util toolset: wix extension add WixToolset.Util.wixext/6.0.2
 
 5) Git can be installed as part of Visual Studio installation
 (or added later by updating the Visual Studio installation through add/remove applications)
@@ -34,7 +34,7 @@ How to create a new code signing certificate/key pair (only written down here fo
 1) Make sure you have the tools makecert and pvk2pfx. These tools can be found in the Windows
    Driver Kit (e.g. C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\x64\)
 
-2) To make the keys and the certificate run:
+2) To make the keys and the certificate run (admin):
    MakeCert.exe -r -pe -ss my -a sha256 -n "CN=ZetesTestCert" -sv zeteseidtest.pvk zeteseidtest.cer
    Leave the pvk password blank
 
