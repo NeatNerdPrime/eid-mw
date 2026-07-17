@@ -158,11 +158,13 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 		IfErrors 0 +2
 			Call ErrorHandler_file
 		ClearErrors
+!if (CI == "")
 		StrCpy $FileToCopy "$INSTDIR\BeIDApp.msi"
 		File "..\..\..\BeIDSignApp\installer\bin\BeIDApp.msi"
 		IfErrors 0 +2
 			Call ErrorHandler_file
 		ClearErrors
+!endif
 		
 		ReadRegDWORD $VCMajor HKLM SOFTWARE\Wow6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\arm64 Major
 		ReadRegDWORD $VCMinor HKLM SOFTWARE\Wow6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\arm64 Minor
@@ -220,6 +222,7 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 
 		StrCpy $LogFile "$INSTDIR\log\install_beidsignapp_arm64_log.txt"
 		StrCpy $TempFile "$INSTDIR\log\1612_count.txt"
+!if (CI == "")
 		ExecWait 'msiexec /quiet /norestart /log "$LogFile" /i "$INSTDIR\BeIDApp.msi"' $MsiResponse
 		${Switch} $MsiResponse
 			${Case} 1603
@@ -242,10 +245,11 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 			${Break}				
 		${EndSwitch}
 		!insertmacro TrackInstallStatus
+		Delete "$INSTDIR\BeIDApp.msi"
+!endif
 		
 		;WriteRegDWORD HKCU "Software\BEID\Installer\Components" "BeidCrypto64" 0x1
 		Delete "$INSTDIR\BeidMW_arm64.msi"
-		Delete "$INSTDIR\BeIDApp.msi"
 	${elseif} ${RunningX64}
 		ClearErrors
 		StrCpy $FileToCopy "$INSTDIR\BeidMW_64.msi"
@@ -253,11 +257,13 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 		IfErrors 0 +2
 			Call ErrorHandler_file
 		ClearErrors
+!if (CI == "")
 		StrCpy $FileToCopy "$INSTDIR\BeIDApp.msi"
 		File "..\..\..\BeIDSignApp\installer\bin\BeIDApp.msi"
 		IfErrors 0 +2
 			Call ErrorHandler_file
 		ClearErrors
+!endif
 		
 		StrCpy $LogFile "$INSTDIR\log\install_eidmw64_log.txt"
 		StrCpy $TempFile "$INSTDIR\log\1612_count.txt"
@@ -301,6 +307,7 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 
 		StrCpy $LogFile "$INSTDIR\log\install_beidsignapp_64_log.txt"
 		StrCpy $TempFile "$INSTDIR\log\1612_count.txt"
+!if (CI == "")
 		ExecWait 'msiexec /quiet /norestart /log "$LogFile" /i "$INSTDIR\BeIDApp.msi"' $MsiResponse
 		${Switch} $MsiResponse
 			${Case} 1603
@@ -323,10 +330,11 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 			${Break}				
 		${EndSwitch}
 		!insertmacro TrackInstallStatus
+		Delete "$INSTDIR\BeIDApp.msi"
+!endif
 		
 		;WriteRegDWORD HKCU "Software\BEID\Installer\Components" "BeidCrypto64" 0x1
 		Delete "$INSTDIR\BeidMW_64.msi"
-		Delete "$INSTDIR\BeIDApp.msi"
 	${Else}	
 		ClearErrors
 		StrCpy $FileToCopy "$INSTDIR\BeidMW_32.msi"
@@ -334,6 +342,7 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 		IfErrors 0 +2
 			Call ErrorHandler_file
 		ClearErrors
+!if (CI == "")
 		StrCpy $FileToCopy "$INSTDIR\BeIDApp32.msi"
 		File "..\..\..\BeIDSignApp\installer\bin\BeIDApp32.msi"
 		IfErrors 0 +2
@@ -342,6 +351,7 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 		;delete previous log
 		StrCpy $LogFile "$INSTDIR\log\install_eidmw32_log.txt"
 		;Delete "$LogFile"
+!endif
 		
 		ExecWait 'msiexec /quiet /norestart /log "$LogFile" /i "$INSTDIR\BeidMW_32.msi"' $MsiResponse
 		
@@ -379,6 +389,7 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 		
 		StrCpy $LogFile "$INSTDIR\log\install_beidsignapp_32_log.txt"
 		StrCpy $TempFile "$INSTDIR\log\1612_count.txt"
+!if (CI == "")
 		ExecWait 'msiexec /quiet /norestart /log "$LogFile" /i "$INSTDIR\BeIDApp32.msi"' $MsiResponse
 		${Switch} $MsiResponse
 			${Case} 1603
@@ -401,9 +412,10 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 			${Break}				
 		${EndSwitch}
 		!insertmacro TrackInstallStatus
+		Delete "$INSTDIR\BeIDApp32.msi"
+!endif
 		
 		Delete "$INSTDIR\BeidMW_32.msi"
-		Delete "$INSTDIR\BeIDApp32.msi"
 	${EndIf}
 
 	${If} $InstallStatus != ""

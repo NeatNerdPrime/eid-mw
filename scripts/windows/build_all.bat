@@ -179,7 +179,7 @@ copy "%~dp0..\..\installers\eid-viewer\Windows\bin\BeidViewer.msi" "%~dp0"
 :: create the NSIS installers
 :: ==========================
 @echo [INFO] Make nsis installer
-"%NSIS_PATH%\makensis.exe" "%~dp0..\..\installers\quickinstaller\Quickinstaller.nsi"
+"%NSIS_PATH%\makensis.exe" /DCI=%CI% "%~dp0..\..\installers\quickinstaller\Quickinstaller.nsi"
 @if %ERRORLEVEL%==1 goto makensis_failed
 
 @echo [INFO] Make nsis viewer installer
