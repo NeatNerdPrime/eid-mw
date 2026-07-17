@@ -6,7 +6,9 @@ import Security
 
 public extension SecCertificate {
     var summary: String {
-        return (SecCertificateCopySubjectSummary(self) as String?) ?? "Certificate"
+        let summary = (SecCertificateCopySubjectSummary(self) as String?) ?? "Certificate"
+        let issuerCommonName = self.issuerCommonName ?? "Unknown"
+        return "\(summary) (\(issuerCommonName))"
     }
     
     var notValidBefore: Date? {
@@ -47,5 +49,26 @@ public extension SecCertificate {
         else { return false }
         
         return notValidBefore < Date() && notValidAfter > Date()
+    }
+    
+    var issuerCommonName: String? {
+        let keys = [kSecOIDX509V1IssuerName] as CFArray
+
+        guard let values = SecCertificateCopyValues(self, keys, nil) as? [CFString: Any],
+              let issuer = values[kSecOIDX509V1IssuerName] as? [CFString: Any],
+              let issuerValue = issuer[kSecPropertyKeyValue] as? [[CFString: Any]]
+        else {
+            return nil
+        }
+
+        for attribute in issuerValue {
+            if let label = attribute[kSecPropertyKeyLabel] as? String,
+               label == "2.5.4.3",
+               let value = attribute[kSecPropertyKeyValue] as? String {
+                return value
+            }
+        }
+
+        return nil
     }
 }

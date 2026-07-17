@@ -49,12 +49,10 @@ class CertificateSelectionViewModel {
 
         let identities = (result as? [SecIdentity]) ?? []
         return identities.compactMap { identity in
-            // Make sure the identity's certificate is valid
-            guard identity.certificate?.isValid == true
-            else { return nil }
-            
-            // Get private key from the certificate, if possible
-            guard let privateKey = identity.privateKey
+            // Make sure the identity's certificate is valid and it has a private ke
+            guard identity.certificate?.isValid == true,
+                  let privateKey = identity.privateKey,
+                  identity.canSignOneOfSupportedAlgorithms
             else { return nil }
 
             return KeychainIdentity(
