@@ -154,7 +154,7 @@
 
 
 @echo [INFO] Check if WiX is installed
-@set FILE_TO_FIND="wix.exe"
+@set FILE_TO_FIND="WixToolset.UI.wixext\6.0.2\wixext6\WixToolset.UI.wixext.dll"
 @echo [INFO] Looking for files: %FILE_TO_FIND%
 
 @set BEID_DIR_WIX_EXT=%WIX%
@@ -164,13 +164,13 @@
 @if "%FILE_NOT_FOUND%"=="" goto found_wix
 @echo        Not found in "%BEID_DIR_WIX_EXT%"
 
-@set BEID_DIR_WIX_EXT=%SEARCH_WIX_PATH%
+@set BEID_DIR_WIX_EXT=%SEARCH_WIX_PATH%\.wix\extensions
 @set FILE_NOT_FOUND=
 @for %%i in (%FILE_TO_FIND%) do @if not exist "%BEID_DIR_WIX_EXT%\%%~i" set FILE_NOT_FOUND=%%~i
 @if "%FILE_NOT_FOUND%"=="" goto found_wix
 @echo        Not found in "%BEID_DIR_WIX_EXT%"
 
-@set BEID_DIR_WIX_EXT=%SEARCH_WIX_PATH_2%
+@set BEID_DIR_WIX_EXT=%SEARCH_WIX_PATH_2%\.wix\extensions
 @set FILE_NOT_FOUND=
 @for %%i in (%FILE_TO_FIND%) do @if not exist "%BEID_DIR_WIX_EXT%\%%~i" set FILE_NOT_FOUND=%%~i
 @if "%FILE_NOT_FOUND%"=="" goto found_wix
