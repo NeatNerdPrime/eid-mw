@@ -19,6 +19,7 @@
 
 @set SEARCH_WIX_PATH=%USERPROFILE%\.dotnet\tools\.store\wix\6.0.2\wix\6.0.2\tools\net6.0\any
 @set SEARCH_WIX_PATH_2=C:\Program Files\WiX Toolset v6.0\bin
+@set SEARCH_WIX_PATH_3=C:\Program Files\Common Files\WixToolset
 @set SEARCH_NSIS_PATH=C:\Program Files (x86)\NSIS
 @set SEARCH_NSIS_PATH_2=C:\Program Files\NSIS
 
@@ -171,6 +172,12 @@
 @echo        Not found in "%BEID_DIR_WIX_EXT%"
 
 @set BEID_DIR_WIX_EXT=%SEARCH_WIX_PATH_2%\.wix\extensions
+@set FILE_NOT_FOUND=
+@for %%i in (%FILE_TO_FIND%) do @if not exist "%BEID_DIR_WIX_EXT%\%%~i" set FILE_NOT_FOUND=%%~i
+@if "%FILE_NOT_FOUND%"=="" goto found_wix
+@echo        Not found in "%BEID_DIR_WIX_EXT%"
+
+@set BEID_DIR_WIX_EXT=%SEARCH_WIX_PATH_3%\extensions
 @set FILE_NOT_FOUND=
 @for %%i in (%FILE_TO_FIND%) do @if not exist "%BEID_DIR_WIX_EXT%\%%~i" set FILE_NOT_FOUND=%%~i
 @if "%FILE_NOT_FOUND%"=="" goto found_wix
