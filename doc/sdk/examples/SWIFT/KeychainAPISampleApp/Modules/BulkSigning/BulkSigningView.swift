@@ -21,9 +21,11 @@ struct BulkSigningView: View {
             case .waitingForSignature:
                 Text("Waiting for signature...")
                 ProgressView()
-            case .signatureCompleted(let signatureHex):
-                Text("Signature completed! Hex value below.")
-                Text(signatureHex)
+            case .signatureCompleted(let signaturesHex):
+                Text("Signature completed! Hex values below.")
+                List(Array(signaturesHex.enumerated()), id:\.offset) { _, signatureHex in
+                    Text(signatureHex)
+                }
                 Button("Back") {
                     self.model.backButtonUsed()
                 }

@@ -39,14 +39,14 @@ class BulkSigningViewModel {
     func urlOpened(_ url: URL) {
         guard url.host() == "bulk-signed-result",
               let queryItems = URLComponents(string: url.absoluteString),
-              let value = queryItems.queryItems?.first(where: { $0.name == "signature" })?.value,
-              let signatureData = Data(base64Encoded: value)
+              let value = queryItems.queryItems?.first(where: { $0.name == "signatures" })?.value
         else {
             self.viewState = .error("Wrong callback received: \(url)")
             return
         }
         
-        self.viewState = .signatureCompleted(signatureData.hexEncodedString)
+        let signaturesData = value.components(separatedBy: ",").compactMap { Data(base64Encoded: $0) }
+        self.viewState = .signatureCompleted(signaturesData.map(\.hexEncodedString))
     }
     
     // MARK: - Internals
