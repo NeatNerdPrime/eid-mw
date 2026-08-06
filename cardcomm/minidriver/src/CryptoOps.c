@@ -316,7 +316,7 @@ DWORD WINAPI   CardSignData
 		{
 			bAlgoRef = BELPIC_SIGN_ALGO_ECDSA_SHA2_384;
 			LogTrace(LOGTYPE_INFO, WHERE, "ECC signing: using P-384 algorithm (0x%02X)", bAlgoRef);
-			/* Enforce 48-byte DTBS for P-384 */
+			/* P-384 supports both SHA-256 and SHA-384 digests */
 			if (cbToSignLocal > 48)
 			{
 				pbToFreeAfter = (PBYTE)pCardData->pfnCspAlloc(48);
@@ -330,9 +330,9 @@ DWORD WINAPI   CardSignData
 				cbToSignLocal = 48;
 				LogTrace(LOGTYPE_INFO, WHERE, "ECC signing: truncating digest from %u to %u bytes for P-384", (unsigned)pInfo->cbData, 48u);
 			}
-			else if (cbToSignLocal < 48)
+			else if ((cbToSignLocal != 32) && (cbToSignLocal != 48))
 			{
-				LogTrace(LOGTYPE_ERROR, WHERE, "ECC signing: digest too short (%u), expected 48 for P-384", (unsigned)cbToSignLocal);
+				LogTrace(LOGTYPE_ERROR, WHERE, "ECC signing: unsupported digest length (%u), expected 32 or 48 for P-384", (unsigned)cbToSignLocal);
 				CLEANUP(SCARD_E_INVALID_PARAMETER);
 			}
 		}
