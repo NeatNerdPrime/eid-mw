@@ -9,7 +9,7 @@ ClassGuid={990A2BD7-E738-46c7-B26F-1CF8FB9F1391}
 Provider=%BOSA%
 CatalogFile=beidmdrv.cat
 PnpLockdown=1
-DriverVer=08/03/2026,5.1.34.4 ;w.x.y.z
+DriverVer=08/05/2026,5.1.35.1 ;w.x.y.z
 ;MMDDYYYY
 [Manufacturer]
 %BOSA%=Bosa,NTarm64.10.0...16299,NTamd64.10.0...16299,NTx86.10.0...16299
@@ -19,19 +19,21 @@ DriverVer=08/03/2026,5.1.34.4 ;w.x.y.z
 %BosaCardDeviceName%=Bosa64_100_Install,SCFILTER\CID_a503010101ad1310
 %BosaCardDeviceName%=Bosa64_100_Install,SCFILTER\CID_a503010101ad1311
 %BosaCardDeviceName%=Bosa64_100_Install,SCFILTER\CID_80318065b085040120120fff829000
+%BosaCardDeviceName%=Bosa64_100_Install,SCFILTER\CID_80318065b085040120120fff829001
 
 ;Windows 10 version 1709 and beyond - x86
 [Bosa.NTx86.10.0...16299]
 %BosaCardDeviceName%=Bosa32_100_Install,SCFILTER\CID_a503010101ad1310
 %BosaCardDeviceName%=Bosa32_100_Install,SCFILTER\CID_a503010101ad1311
 %BosaCardDeviceName%=Bosa32_100_Install,SCFILTER\CID_80318065b085040120120fff829000
+%BosaCardDeviceName%=Bosa32_100_Install,SCFILTER\CID_80318065b085040120120fff829001
 
 ;Windows 10 version 1709 and beyond - arm64
 [Bosa.NTarm64.10.0...16299]
 %BosaCardDeviceName%=BosaArm64_100_Install,SCFILTER\CID_a503010101ad1310
 %BosaCardDeviceName%=BosaArm64_100_Install,SCFILTER\CID_a503010101ad1311
 %BosaCardDeviceName%=BosaArm64_100_Install,SCFILTER\CID_80318065b085040120120fff829000
-
+%BosaCardDeviceName%=BosaArm64_100_Install,SCFILTER\CID_80318065b085040120120fff829001
 
 
 [SourceDisksFiles]
@@ -135,6 +137,14 @@ HKR,%SmartCardName_v18%,"80000001",0x00000000,"beidmdrv32.dll"
 HKR,%SmartCardName_v18%,"80000100",0x00000000,"en-US,Please enter your PIN;en-EN,Please enter your PIN;nl-BE,Geef uw PIN in;nl-NL,Geef uw PIN in;fr-BE,Entrez votre code PIN;fr-FR,Entrez votre code PIN;de-DE,Bitte geben Sie Ihre PIN ein"
 HKR,%SmartCardName_v18%,"80000103",0x00000000,"en-US,Please enter your PIN;en-EN,Please enter your PIN;nl-BE,Geef uw PIN in;nl-NL,Geef uw PIN in;fr-BE,Entrez votre code PIN;fr-FR,Entrez votre code PIN;de-DE,Bitte geben Sie Ihre PIN ein"
 
+HKR,%SmartCardName_virtual%,"ATR",0x00000001,3b,7f,96,00,00,80,31,80,65,b0,85,04,01,20,12,0f,ff,82,90,01
+HKR,%SmartCardName_virtual%,"ATRMask",0x00000001,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff
+HKR,%SmartCardName_virtual%,"Crypto Provider",0x00000000,"Microsoft Base Smart Card Crypto Provider"
+HKR,%SmartCardName_virtual%,"Smart Card Key Storage Provider",0x00000000,"Microsoft Smart Card Key Storage Provider"
+HKR,%SmartCardName_virtual%,"80000001",0x00000000,"beidmdrv32.dll"
+HKR,%SmartCardName_virtual%,"80000100",0x00000000,"en-US,Please enter your PIN;en-EN,Please enter your PIN;nl-BE,Geef uw PIN in;nl-NL,Geef uw PIN in;fr-BE,Entrez votre code PIN;fr-FR,Entrez votre code PIN;de-DE,Bitte geben Sie Ihre PIN ein"
+HKR,%SmartCardName_virtual%,"80000103",0x00000000,"en-US,Please enter your PIN;en-EN,Please enter your PIN;nl-BE,Geef uw PIN in;nl-NL,Geef uw PIN in;fr-BE,Entrez votre code PIN;fr-FR,Entrez votre code PIN;de-DE,Bitte geben Sie Ihre PIN ein"
+
 [AddRegDefault64]
 HKR,%SmartCardName%,"ATR",0x00000001,3b,98,00,40,00,a5,03,01,01,01,ad,13,00
 HKR,%SmartCardName%,"ATRMask",0x00000001,ff,ff,00,ff,00,ff,ff,ff,ff,ff,ff,ff,00
@@ -151,6 +161,14 @@ HKR,%SmartCardName_v18%,"Smart Card Key Storage Provider",0x00000000,"Microsoft 
 HKR,%SmartCardName_v18%,"80000001",0x00000000,"beidmdrv64.dll"
 HKR,%SmartCardName_v18%,"80000100",0x00000000,"en-US,Please enter your PIN;en-EN,Please enter your PIN;nl-BE,Geef uw PIN in;nl-NL,Geef uw PIN in;fr-BE,Entrez votre code PIN;fr-FR,Entrez votre code PIN;de-DE,Bitte geben Sie Ihre PIN ein"
 HKR,%SmartCardName_v18%,"80000103",0x00000000,"en-US,Please enter your PIN;en-EN,Please enter your PIN;nl-BE,Geef uw PIN in;nl-NL,Geef uw PIN in;fr-BE,Entrez votre code PIN;fr-FR,Entrez votre code PIN;de-DE,Bitte geben Sie Ihre PIN ein"
+
+HKR,%SmartCardName_virtual%,"ATR",0x00000001,3b,7f,96,00,00,80,31,80,65,b0,85,04,01,20,12,0f,ff,82,90,01
+HKR,%SmartCardName_virtual%,"ATRMask",0x00000001,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff
+HKR,%SmartCardName_virtual%,"Crypto Provider",0x00000000,"Microsoft Base Smart Card Crypto Provider"
+HKR,%SmartCardName_virtual%,"Smart Card Key Storage Provider",0x00000000,"Microsoft Smart Card Key Storage Provider"
+HKR,%SmartCardName_virtual%,"80000001",0x00000000,"beidmdrv64.dll"
+HKR,%SmartCardName_virtual%,"80000100",0x00000000,"en-US,Please enter your PIN;en-EN,Please enter your PIN;nl-BE,Geef uw PIN in;nl-NL,Geef uw PIN in;fr-BE,Entrez votre code PIN;fr-FR,Entrez votre code PIN;de-DE,Bitte geben Sie Ihre PIN ein"
+HKR,%SmartCardName_virtual%,"80000103",0x00000000,"en-US,Please enter your PIN;en-EN,Please enter your PIN;nl-BE,Geef uw PIN in;nl-NL,Geef uw PIN in;fr-BE,Entrez votre code PIN;fr-FR,Entrez votre code PIN;de-DE,Bitte geben Sie Ihre PIN ein"
 
 [AddRegDefaultArm64]
 HKR,%SmartCardName%,"ATR",0x00000001,3b,98,00,40,00,a5,03,01,01,01,ad,13,00
@@ -169,10 +187,13 @@ HKR,%SmartCardName_v18%,"80000001",0x00000000,"beidmdrv_arm64.dll"
 HKR,%SmartCardName_v18%,"80000100",0x00000000,"en-US,Please enter your PIN;en-EN,Please enter your PIN;nl-BE,Geef uw PIN in;nl-NL,Geef uw PIN in;fr-BE,Entrez votre code PIN;fr-FR,Entrez votre code PIN;de-DE,Bitte geben Sie Ihre PIN ein"
 HKR,%SmartCardName_v18%,"80000103",0x00000000,"en-US,Please enter your PIN;en-EN,Please enter your PIN;nl-BE,Geef uw PIN in;nl-NL,Geef uw PIN in;fr-BE,Entrez votre code PIN;fr-FR,Entrez votre code PIN;de-DE,Bitte geben Sie Ihre PIN ein"
 
-
-
-
-
+HKR,%SmartCardName_virtual%,"ATR",0x00000001,3b,7f,96,00,00,80,31,80,65,b0,85,04,01,20,12,0f,ff,82,90,01
+HKR,%SmartCardName_virtual%,"ATRMask",0x00000001,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff,ff
+HKR,%SmartCardName_virtual%,"Crypto Provider",0x00000000,"Microsoft Base Smart Card Crypto Provider"
+HKR,%SmartCardName_virtual%,"Smart Card Key Storage Provider",0x00000000,"Microsoft Smart Card Key Storage Provider"
+HKR,%SmartCardName_virtual%,"80000001",0x00000000,"beidmdrv_arm64.dll"
+HKR,%SmartCardName_virtual%,"80000100",0x00000000,"en-US,Please enter your PIN;en-EN,Please enter your PIN;nl-BE,Geef uw PIN in;nl-NL,Geef uw PIN in;fr-BE,Entrez votre code PIN;fr-FR,Entrez votre code PIN;de-DE,Bitte geben Sie Ihre PIN ein"
+HKR,%SmartCardName_virtual%,"80000103",0x00000000,"en-US,Please enter your PIN;en-EN,Please enter your PIN;nl-BE,Geef uw PIN in;nl-NL,Geef uw PIN in;fr-BE,Entrez votre code PIN;fr-FR,Entrez votre code PIN;de-DE,Bitte geben Sie Ihre PIN ein"
 
 
 [DestinationDirs]
@@ -189,3 +210,5 @@ MediaDescription="Belgium eID Smart Card Minidriver Installation Disk"
 BosaCardDeviceName="Belgium eID Minidriver for Smart Card"
 SmartCardName="SOFTWARE\Microsoft\Cryptography\Calais\SmartCards\Beid"
 SmartCardName_v18="SOFTWARE\Microsoft\Cryptography\Calais\SmartCards\Beid_v18"
+SmartCardName_virtual="SOFTWARE\Microsoft\Cryptography\Calais\SmartCards\Beid_virtual"
+SmartCardNameWOW64_v18="SOFTWARE\Wow6432Node\Microsoft\Cryptography\Calais\SmartCards\Beid_v18"
