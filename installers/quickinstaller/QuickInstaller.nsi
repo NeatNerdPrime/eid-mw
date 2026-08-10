@@ -158,7 +158,7 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 		IfErrors 0 +2
 			Call ErrorHandler_file
 		ClearErrors
-!if $%CI% == ""
+!if "$%CI%" != "true"
 		;StrCpy $FileToCopy "$INSTDIR\BeIDApp.msi"
 		;File "..\..\..\BeIDSignApp\installer\bin\BeIDApp.msi"
 		StrCpy $FileToCopy "$INSTDIR\BeIDSignApp.msi"
@@ -235,7 +235,7 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 
 		StrCpy $LogFile "$INSTDIR\log\install_beidsignapp_arm64_log.txt"
 		StrCpy $TempFile "$INSTDIR\log\1612_count.txt"
-!if $%CI% == ""
+!if "$%CI%" != "true"
 		;ExecWait 'msiexec /quiet /norestart /log "$LogFile" /i "$INSTDIR\BeIDApp.msi"' $MsiResponse
 		ExecWait 'msiexec /quiet /norestart /log "$LogFile" /i "$INSTDIR\BeIDSignApp.msi"' $MsiResponse
 		${Switch} $MsiResponse
@@ -325,7 +325,7 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 		IfErrors 0 +2
 			Call ErrorHandler_file
 		ClearErrors
-!if $%CI% == ""
+!if "$%CI%" != "true"
 		;StrCpy $FileToCopy "$INSTDIR\BeIDApp.msi"
 		;File "..\..\..\BeIDSignApp\installer\bin\BeIDApp.msi"
 		StrCpy $FileToCopy "$INSTDIR\BeIDSignApp.msi"
@@ -387,7 +387,7 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 
 		StrCpy $LogFile "$INSTDIR\log\install_beidsignapp_64_log.txt"
 		StrCpy $TempFile "$INSTDIR\log\1612_count.txt"
-!if $%CI% == ""
+!if "$%CI%" != "true"
 		;ExecWait 'msiexec /quiet /norestart /log "$LogFile" /i "$INSTDIR\BeIDApp.msi"' $MsiResponse
 		ExecWait 'msiexec /quiet /norestart /log "$LogFile" /i "$INSTDIR\BeIDSignApp.msi"' $MsiResponse
 		${Switch} $MsiResponse
@@ -477,7 +477,7 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 		IfErrors 0 +2
 			Call ErrorHandler_file
 		ClearErrors
-!if $%CI% == ""
+!if "$%CI%" != "true"
 		;StrCpy $FileToCopy "$INSTDIR\BeIDApp32.msi"
 		;File "..\..\..\BeIDSignApp\installer\bin\BeIDApp32.msi"
 		StrCpy $FileToCopy "$INSTDIR\BeIDSignApp32.msi"
@@ -531,7 +531,7 @@ Section "Belgium Eid Crypto Modules" BeidCrypto
 		
 		StrCpy $LogFile "$INSTDIR\log\install_beidsignapp_32_log.txt"
 		StrCpy $TempFile "$INSTDIR\log\1612_count.txt"
-!if $%CI% == ""
+!if "$%CI%" != "true"
 		;ExecWait 'msiexec /quiet /norestart /log "$LogFile" /i "$INSTDIR\BeIDApp32.msi"' $MsiResponse
 		ExecWait 'msiexec /quiet /norestart /log "$LogFile" /i "$INSTDIR\BeIDSignApp32.msi"' $MsiResponse
 		${Switch} $MsiResponse
