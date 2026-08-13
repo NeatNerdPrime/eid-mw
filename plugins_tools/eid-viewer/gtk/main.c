@@ -662,6 +662,7 @@ int main(int argc, char** argv) {
 	cb->newstringdata = newstringdata;
 	cb->newbindata = newbindata;
 	cb->logv = ui_log_init();
+	uilog(EID_VWR_LOG_NORMAL, "eID Viewer version: %s", PACKAGE_VERSION);
 	cb->newstate = newstate;
 	cb->pinop_result = pinop_result;
 	cb->readers_changed = readers_changed;

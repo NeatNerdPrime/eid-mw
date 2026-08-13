@@ -434,6 +434,8 @@
         }
 	[self setIsForeignerCard:NO];
 	[_logLevel selectItemAtIndex:level];
+	NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+	[self log:[NSString stringWithFormat:@"eID Viewer version: %@", version] withLevel:eIDLogLevelNormal];
 	[eIDOSLayerBackend setLang:langcode];
 	[eIDOSLayerBackend setUi:self];
 }

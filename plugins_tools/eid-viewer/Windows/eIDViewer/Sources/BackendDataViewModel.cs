@@ -58,6 +58,7 @@ namespace eIDViewer
             //try to find a log_level setting in the registry, 
             //and initialize log_level and log_level_index
             GetViewerLogLevel();
+            WriteLog("eID Viewer version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString() + "\n", eid_vwr_loglevel.EID_VWR_LOG_NORMAL);
 
         }
 
