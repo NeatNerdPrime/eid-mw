@@ -68,7 +68,7 @@ void showabout(GtkWidget* about G_GNUC_UNUSED, gpointer user_data G_GNUC_UNUSED)
 			"version", PACKAGE_VERSION,
 			"website", "http://eid.belgium.be/",
 			"authors", authors,
-			"copyright", _("Copyright 2015-2016 Fedict\nCopyright 2017-2018 BOSA"),
+			"copyright", _("Copyright 2015-2016 Fedict\nCopyright 2017-2026 BOSA"),
 			"comments", _("View data on the Belgian eID card"),
 			"license-type", GTK_LICENSE_LGPL_3_0,
 			"artists", artists,
