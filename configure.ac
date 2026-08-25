@@ -1,7 +1,7 @@
 AC_PREREQ([2.61])
 AC_INIT([eid-mw],
   m4_esyscmd_s(scripts/build-aux/genver.sh),
-  [servicedesk@fedict.be],,
+  [servicedesk@bosa.fgov.be],,
   [http://eid.belgium.be])
 
 AC_CONFIG_AUX_DIR([scripts/build-aux])
