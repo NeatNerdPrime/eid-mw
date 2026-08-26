@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eid-mw 4.1.1-v4.1.1.dirty\n"
-"Report-Msgid-Bugs-To: servicedesk@bosa.fgov.be\n"
+"Report-Msgid-Bugs-To: info@bosa.fgov.be\n"
 "POT-Creation-Date: 2021-02-11 10:09+0200\n"
 "PO-Revision-Date: 2015-02-06 13:47+0100\n"
 "Last-Translator: Wouter Verhelst <wouter.verhelst@zetes.com>\n"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eid-mw 4.1.1-v4.1.1.4.gc149158.dirty\n"
-"Report-Msgid-Bugs-To: servicedesk@bosa.fgov.be\n"
+"Report-Msgid-Bugs-To: info@bosa.fgov.be\n"
 "POT-Creation-Date: 2024-01-11 13:46+0100\n"
 "PO-Revision-Date: 2024-01-11 11:47+0100\n"
 "Last-Translator: \n"
