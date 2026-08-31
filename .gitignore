@@ -137,3 +137,5 @@ scripts/windows/beidmdrv_all_5.1.8.6024.zip
 /scripts/windows/beidmdr*/*/*.cat
 /scripts/windows/beidmdr*/*/*.inf
 /scripts/windows/*.zip
+/cardcomm/pkcs11/VS_2022/Win32_PKCS11_SA_Release
+/cardcomm/pkcs11/VS_2022/x64_PKCS11_SA_Release
