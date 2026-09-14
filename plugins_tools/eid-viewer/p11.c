@@ -982,7 +982,7 @@ int eid_vwr_p11_wait_for_slot_event(BOOLEAN blocking, CK_SLOT_ID_PTR pSlotID)
 			be_log(EID_VWR_LOG_ERROR, TEXT("C_WaitForSlotEvent returned EIDV_RV_TERMINATE"));
 			return EIDV_RV_TERMINATE;
 		}
-		if (CKR_FUNCTION_CANCELED)
+		if (p11Ret == CKR_FUNCTION_CANCELED)
 		{
 			be_log(EID_VWR_LOG_NORMAL, TEXT("C_WaitForSlotEvent returned CKR_FUNCTION_CANCELED"), p11Ret);
 		}
